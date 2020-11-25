@@ -4,6 +4,6 @@
     $resultado= mysqli_query($con,$sql) or die('Error en el query');
     mysqli_close($con);
 
-    echo 'El usuario es: '.$_POST["Usuario"];
+    header("location:login.html");
     
 ?>

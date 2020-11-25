@@ -11,7 +11,9 @@
 
     $filas=mysqli_num_rows($resultado);
     if($filas>0){
-        header("location:menuprincipal.html");
+        session_start();
+        $_SESSION['usuario']=$usuario;
+        header("location:menuprincipal.php");
     }else {
         header("location:datosincorrectos.html");
     }

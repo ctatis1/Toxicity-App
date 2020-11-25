@@ -1,3 +1,6 @@
+<!--
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,7 +8,7 @@
 	<title></title> 
 	<meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" >
-	<link rel="stylesheet" href="estilos.css">
+	<link rel="stylesheet" href="estilosLoginRegistro.css">
 	
 
 </head>  
@@ -32,4 +35,63 @@
          <p>¿Ya tienes una cuenta?<a class="link" href="login.html">Iniciar Sesion</a></p>
     </form>
 </body>
+</html>
+-->
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
+    <link rel = "preconnect" href = "https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
+   	<link rel="stylesheet" href="estilosLoginRegistro.css">
+    <title>Toxystem</title>
+  </head>
+  <body>
+    <div class="row">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4" id="login">
+            <div class="pt-lg-5">
+                <img src="logo.png" alt="" class="img-fluid">
+            </div>
+            <div class="px-lg-5 py-lg-5 p-4">
+                <h1 class="text-light font-weight-bold">Bienvenido</h1>
+                <h3 class="text-light font-weight-bold mb-3">Registro</h3>
+                
+                <form action="conexion.php" method="post">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="text-light font-weight-bold">Usuario</label>
+                    <input type="text" class="form-control" id="Usuario" name="Usuario"  placeholder="Ingrese un nombre de usuario">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="text-light font-weight-bold">Contraseña</label>
+                    <input type="text" class="form-control" id="Contraseña" name="Contraseña"  placeholder="Ingrese una contraseña">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputEmail1" class="text-light font-weight-bold">Fecha de Nacimiento</label>
+                    <input type="date" class="form-control" value="2001-01-01" min="1930-01-01" id="Fecha" name="Fecha"  placeholder="Ingrese su fecha de nacimiento">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1" class="text-light font-weight-bold">Correo Electrónico</label>
+                    <input type="email" class="form-control" name="Correo" id="Correo" placeholder="Ingrese un correo electrónico">
+                  </div>                  
+                  <button id="ingresar" type="submit" class="btn btn-primary">Enviar</button>
+                  <small class="form-text text-light">¿Ya tienes cuenta? <a class="link" href="login.html">Iniciar Sesión</a></small>
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+        
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
 </html>
