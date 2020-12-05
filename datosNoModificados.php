@@ -1,12 +1,17 @@
-
-<?php
-    session_start();
-    $var= $_SESSION['usuario'];
-    if ($var==null || $var=''){
+   <?php
+    session_start();  
+    $usu= $_SESSION['usuario'];   
+    if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
+    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
+    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
+    if(!$resultado){
+        die("error");
+    }else{
+        $row=mysqli_fetch_assoc($resultado);  
+    }
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +25,7 @@
     <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
     <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosMenuPrincipal.css">
+    <link rel="stylesheet" href="estilosModificarDatosCuenta.css">
    
     
 
@@ -34,7 +39,7 @@
            </div> 
            <div class="menu">
               <!--Buscar logos más accurate-->
-               <a href="#" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
+               <a href="menuprincipal.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
                <a href="#" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
                <a href="#" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
                <a href="controles.php" class="text-light"><i class = "icon ion-md-list lead" ></i>Controles</a>
@@ -44,7 +49,7 @@
         </div>
         
         <div class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bgLight">
+            <nav class="navbar navbar-expand-lg navbar-light bgLight border-bottom pb-3">
              <!--el contenedor no  sirve bien, revisarlo later-->
               <div class="contenedor">
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
@@ -59,7 +64,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['usuario']?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="perfil.php">Cuenta</a>
+                      <a class="dropdown-item" href="#">Cuenta</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Cerrar Sesion</a>
                     </div>
@@ -68,6 +73,22 @@
               </div>
             </div>
             </nav>
+            
+            <div id="contenido">
+                <section class="py-3">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h1 class="font-weight-bold mb-0">Error Modificación de Datos</h1>
+                                <p class="text-muted lead">Sus datos no fueron modificados debido a un error. Revisé los valores ingresados.</p>
+                            </div>      
+                            <div class="col-lg-3 d-flex">
+                                <button class="btn btn-primary w-100 align-self-center text-light"><a href="modificarDatosCuenta.php">Revisar</a></button>
+                            </div>                         
+                        </div>
+                    </div>                    
+                </section>
+            </div>
         </div>
     </div>
     

@@ -4,6 +4,6 @@
     $resultado= mysqli_query($con,$sql) or die('Error en el query');
     mysqli_close($con);
 
-    header("location:login.html");
+    header("location:registroExistoso.html");
     
 ?>

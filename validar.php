@@ -10,14 +10,13 @@
     $resultado=mysqli_query($conexion,$consulta) or die('Error de query');
 
     $filas=mysqli_num_rows($resultado);
-    if($filas>0){
-        session_start();
-        $_SESSION['usuario']=$usuario;
-        header("location:menuprincipal.php");
-    }else {
-        header("location:datosincorrectos.html");
-    }
-    
+        if($filas>0){
+            session_start();
+            $_SESSION['usuario']=$usuario;
+            header("location:menuprincipal.php");
+        }else {
+            header("location:datosincorrectos.html");
+        }
     mysqli_free_result($resultado);
     mysqli_close($conexion);
 ?>
