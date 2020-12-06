@@ -72,18 +72,18 @@ drop table USUARIO_TRATAMIENTO;
 /* Table: CONTROL                                               */
 /*==============================================================*/
 create table CONTROL (
+   NOMBRECONTROL            VARCHAR(40)          not null,
    FECHACONTROLINICIAL  DATE                 not null,
-   DESCRIPCIONCONTROL   VARCHAR(40)          not null,
-   IDCONTROL            INT                 not null AUTO_INCREMENT,
+   DESCRIPCIONCONTROL   VARCHAR(600)          not null,
    FECHACONTROLFINAL    DATE                 not null,
-   constraint PK_CONTROL primary key (IDCONTROL)
+   constraint PK_CONTROL primary key (NOMBRECONTROL)
 );
 
 /*==============================================================*/
 /* Index: CONTROL_PK                                            */
 /*==============================================================*/
 create unique index CONTROL_PK on CONTROL (
-IDCONTROL
+NOMBRECONTROL
 );
 
 /*==============================================================*/
@@ -106,16 +106,16 @@ NOMBRERESIDUO
 /* Table: RESIDUO_CONTROL                                       */
 /*==============================================================*/
 create table RESIDUO_CONTROL (
-   IDCONTROL            int                 not null AUTO_INCREMENT,
+   NOMBRECONTROL        VARCHAR(40)          not null,
    NOMBRERESIDUO        VARCHAR(40)          not null,
-   constraint PK_RESIDUO_CONTROL primary key (IDCONTROL, NOMBRERESIDUO)
+   constraint PK_RESIDUO_CONTROL primary key (NOMBRECONTROL, NOMBRERESIDUO)
 );
 
 /*==============================================================*/
 /* Index: RESIDUO_CONTROL_PK                                    */
 /*==============================================================*/
 create unique index RESIDUO_CONTROL_PK on RESIDUO_CONTROL (
-IDCONTROL,
+NOMBRECONTROL,
 NOMBRERESIDUO
 );
 
@@ -130,7 +130,7 @@ NOMBRERESIDUO
 /* Index: RESIDUO_CONTROL_FK                                    */
 /*==============================================================*/
 create  index RESIDUO_CONTROL_FK on RESIDUO_CONTROL (
-IDCONTROL
+NOMBRECONTROL
 );
 
 /*==============================================================*/
@@ -185,16 +185,16 @@ NOMBRETRATAMIENTO
 /* Table: TRATAMIENTO_CONTROL                                   */
 /*==============================================================*/
 create table TRATAMIENTO_CONTROL (
-   IDCONTROL            int                 not null AUTO_INCREMENT,
+   NOMBRECONTROL        VARCHAR(40)          not null,
    NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   constraint PK_TRATAMIENTO_CONTROL primary key (IDCONTROL, NOMBRETRATAMIENTO)
+   constraint PK_TRATAMIENTO_CONTROL primary key (NOMBRECONTROL, NOMBRETRATAMIENTO)
 );
 
 /*==============================================================*/
 /* Index: PROCESO_CONTROL_PK                                    */
 /*==============================================================*/
 create unique index PROCESO_CONTROL_PK on TRATAMIENTO_CONTROL (
-IDCONTROL,
+NOMBRECONTROL,
 NOMBRETRATAMIENTO
 );
 
@@ -209,7 +209,7 @@ NOMBRETRATAMIENTO
 /* Index: PROCESO_CONTROL_FK                                    */
 /*==============================================================*/
 create  index PROCESO_CONTROL_FK on TRATAMIENTO_CONTROL (
-IDCONTROL
+NOMBRECONTROL
 );
 
 /*==============================================================*/
@@ -234,16 +234,16 @@ NOMBREUSUARIO
 /* Table: USUARIO_CONTROL                                       */
 /*==============================================================*/
 create table USUARIO_CONTROL (
-   IDCONTROL            int                 not null AUTO_INCREMENT,
+   NOMBRECONTROL        VARCHAR(40)          not null,
    NOMBREUSUARIO        VARCHAR(40)          not null,
-   constraint PK_USUARIO_CONTROL primary key (IDCONTROL, NOMBREUSUARIO)
+   constraint PK_USUARIO_CONTROL primary key (NOMBRECONTROL, NOMBREUSUARIO)
 );
 
 /*==============================================================*/
 /* Index: USUARIO_CONTROL_PK                                    */
 /*==============================================================*/
 create unique index USUARIO_CONTROL_PK on USUARIO_CONTROL (
-IDCONTROL,
+NOMBRECONTROL,
 NOMBREUSUARIO
 );
 
@@ -251,7 +251,7 @@ NOMBREUSUARIO
 /* Index: USUARIO_CONTROL_FK                                    */
 /*==============================================================*/
 create  index USUARIO_CONTROL_FK on USUARIO_CONTROL (
-IDCONTROL
+NOMBRECONTROL
 );
 
 /*==============================================================*/
@@ -324,8 +324,8 @@ NOMBRETRATAMIENTO
 );
 
 alter table RESIDUO_CONTROL
-   add constraint FK_RESIDUO__RESIDUO_C_CONTROL foreign key (IDCONTROL)
-      references CONTROL (IDCONTROL)
+   add constraint FK_RESIDUO__RESIDUO_C_CONTROL foreign key (NOMBRECONTROL)
+      references CONTROL (NOMBRECONTROL)
       on delete restrict on update restrict;
 
 alter table RESIDUO_CONTROL
@@ -344,8 +344,8 @@ alter table RESIDUO_TRATAMIENTO
       on delete restrict on update restrict;
 
 alter table TRATAMIENTO_CONTROL
-   add constraint FK_TRATAMIE_TRATAMIEN_CONTROL foreign key (IDCONTROL)
-      references CONTROL (IDCONTROL)
+   add constraint FK_TRATAMIE_TRATAMIEN_CONTROL foreign key (NOMBRECONTROL)
+      references CONTROL (NOMBRECONTROL)
       on delete restrict on update restrict;
 
 alter table TRATAMIENTO_CONTROL
@@ -354,8 +354,8 @@ alter table TRATAMIENTO_CONTROL
       on delete restrict on update restrict;
 
 alter table USUARIO_CONTROL
-   add constraint FK_USUARIO__USUARIO_C_CONTROL foreign key (IDCONTROL)
-      references CONTROL (IDCONTROL)
+   add constraint FK_USUARIO__USUARIO_C_CONTROL foreign key (NOMBRECONTROL)
+      references CONTROL (NOMBRECONTROL)
       on delete restrict on update restrict;
 
 alter table USUARIO_CONTROL
@@ -383,3 +383,6 @@ alter table USUARIO_TRATAMIENTO
       references USUARIO (NOMBREUSUARIO)
       on delete restrict on update restrict;
 
+INSERT INTO `usuario` (`NOMBREUSUARIO`, `CONTRASENAUSUARIO`, `FECHANACIMIENTOUSUARIO`, `CORREO`) VALUES
+('Anuel', '1234', '2001-01-01', 'anuel@hotmail.com'),
+('Ostin', '12345', '2001-01-01', 'lamarrash@hotmail.com');
