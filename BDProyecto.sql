@@ -68,100 +68,21 @@ drop index USUARIO_PROCESO_PK;
 
 drop table USUARIO_TRATAMIENTO;
 */
-/*==============================================================*/
-/* Table: CONTROL                                               */
-/*==============================================================*/
-create table CONTROL (
-   NOMBRECONTROL            VARCHAR(40)          not null,
-   FECHACONTROLINICIAL  DATE                 not null,
-   DESCRIPCIONCONTROL   VARCHAR(600)          not null,
-   FECHACONTROLFINAL    DATE                 not null,
-   constraint PK_CONTROL primary key (NOMBRECONTROL)
-);
-
-/*==============================================================*/
-/* Index: CONTROL_PK                                            */
-/*==============================================================*/
-create unique index CONTROL_PK on CONTROL (
-NOMBRECONTROL
-);
 
 /*==============================================================*/
 /* Table: RESIDUO                                               */
 /*==============================================================*/
 create table RESIDUO (
-   NOMBRERESIDUO        VARCHAR(40)          not null,
-   DESCRIPCIONRESIDUO   VARCHAR(100)         not null,
-   constraint PK_RESIDUO primary key (NOMBRERESIDUO)
+   TIPORESIDUO          VARCHAR(40)          not null,
+   DESCRIPCIONRESIDUO   VARCHAR(400)         not null,
+   constraint PK_RESIDUO primary key (TIPORESIDUO)
 );
 
 /*==============================================================*/
 /* Index: RESIDUO_PK                                            */
 /*==============================================================*/
 create unique index RESIDUO_PK on RESIDUO (
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Table: RESIDUO_CONTROL                                       */
-/*==============================================================*/
-create table RESIDUO_CONTROL (
-   NOMBRECONTROL        VARCHAR(40)          not null,
-   NOMBRERESIDUO        VARCHAR(40)          not null,
-   constraint PK_RESIDUO_CONTROL primary key (NOMBRECONTROL, NOMBRERESIDUO)
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_CONTROL_PK                                    */
-/*==============================================================*/
-create unique index RESIDUO_CONTROL_PK on RESIDUO_CONTROL (
-NOMBRECONTROL,
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_CONTROL2_FK                                   */
-/*==============================================================*/
-create  index RESIDUO_CONTROL2_FK on RESIDUO_CONTROL (
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_CONTROL_FK                                    */
-/*==============================================================*/
-create  index RESIDUO_CONTROL_FK on RESIDUO_CONTROL (
-NOMBRECONTROL
-);
-
-/*==============================================================*/
-/* Table: RESIDUO_TRATAMIENTO                                   */
-/*==============================================================*/
-create table RESIDUO_TRATAMIENTO (
-   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   NOMBRERESIDUO        VARCHAR(40)          not null,
-   constraint PK_RESIDUO_TRATAMIENTO primary key (NOMBRETRATAMIENTO, NOMBRERESIDUO)
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_PROCESO_PK                                    */
-/*==============================================================*/
-create unique index RESIDUO_PROCESO_PK on RESIDUO_TRATAMIENTO (
-NOMBRETRATAMIENTO,
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_PROCESO2_FK                                   */
-/*==============================================================*/
-create  index RESIDUO_PROCESO2_FK on RESIDUO_TRATAMIENTO (
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_PROCESO_FK                                    */
-/*==============================================================*/
-create  index RESIDUO_PROCESO_FK on RESIDUO_TRATAMIENTO (
-NOMBRETRATAMIENTO
+TIPORESIDUO
 );
 
 /*==============================================================*/
@@ -169,8 +90,7 @@ NOMBRETRATAMIENTO
 /*==============================================================*/
 create table TRATAMIENTO (
    NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   TIPOTRATAMIENTO      VARCHAR(40)          not null,
-   DESCRIPCIONTRATAMIENTO VARCHAR(100)         not null,
+   DESCRIPCIONTRATAMIENTO VARCHAR(400)         not null,
    constraint PK_TRATAMIENTO primary key (NOMBRETRATAMIENTO)
 );
 
@@ -182,44 +102,13 @@ NOMBRETRATAMIENTO
 );
 
 /*==============================================================*/
-/* Table: TRATAMIENTO_CONTROL                                   */
-/*==============================================================*/
-create table TRATAMIENTO_CONTROL (
-   NOMBRECONTROL        VARCHAR(40)          not null,
-   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   constraint PK_TRATAMIENTO_CONTROL primary key (NOMBRECONTROL, NOMBRETRATAMIENTO)
-);
-
-/*==============================================================*/
-/* Index: PROCESO_CONTROL_PK                                    */
-/*==============================================================*/
-create unique index PROCESO_CONTROL_PK on TRATAMIENTO_CONTROL (
-NOMBRECONTROL,
-NOMBRETRATAMIENTO
-);
-
-/*==============================================================*/
-/* Index: PROCESO_CONTROL2_FK                                   */
-/*==============================================================*/
-create  index PROCESO_CONTROL2_FK on TRATAMIENTO_CONTROL (
-NOMBRETRATAMIENTO
-);
-
-/*==============================================================*/
-/* Index: PROCESO_CONTROL_FK                                    */
-/*==============================================================*/
-create  index PROCESO_CONTROL_FK on TRATAMIENTO_CONTROL (
-NOMBRECONTROL
-);
-
-/*==============================================================*/
 /* Table: USUARIO                                               */
 /*==============================================================*/
 create table USUARIO (
    NOMBREUSUARIO        VARCHAR(40)          not null,
    CONTRASENAUSUARIO    VARCHAR(10)          not null,
    FECHANACIMIENTOUSUARIO DATE                 not null,
-   CORREO               VARCHAR(20)          not null,
+   CORREO               VARCHAR(40)          not null,
    constraint PK_USUARIO primary key (NOMBREUSUARIO)
 );
 
@@ -231,158 +120,41 @@ NOMBREUSUARIO
 );
 
 /*==============================================================*/
-/* Table: USUARIO_CONTROL                                       */
+/* Table: CONTROL                                               */
 /*==============================================================*/
-create table USUARIO_CONTROL (
+create table CONTROL (
    NOMBRECONTROL        VARCHAR(40)          not null,
    NOMBREUSUARIO        VARCHAR(40)          not null,
-   constraint PK_USUARIO_CONTROL primary key (NOMBRECONTROL, NOMBREUSUARIO)
+   TIPORESIDUO          VARCHAR(40)          not null,
+   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
+   DESCRIPCIONCONTROL   VARCHAR(600)         not null,
+   FECHACONTROLINICIAL  DATE                 not null,
+   FECHACONTROLFINAL    DATE                 not null,
+   constraint PK_CONTROL primary key (NOMBRECONTROL)
 );
 
 /*==============================================================*/
-/* Index: USUARIO_CONTROL_PK                                    */
+/* Index: CONTROL_PK                                            */
 /*==============================================================*/
-create unique index USUARIO_CONTROL_PK on USUARIO_CONTROL (
-NOMBRECONTROL,
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Index: USUARIO_CONTROL_FK                                    */
-/*==============================================================*/
-create  index USUARIO_CONTROL_FK on USUARIO_CONTROL (
+create unique index CONTROL_PK on CONTROL (
 NOMBRECONTROL
 );
 
-/*==============================================================*/
-/* Index: USUARIO_CONTROL2_FK                                   */
-/*==============================================================*/
-create  index USUARIO_CONTROL2_FK on USUARIO_CONTROL (
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Table: USUARIO_RESIDUO                                       */
-/*==============================================================*/
-create table USUARIO_RESIDUO (
-   NOMBRERESIDUO        VARCHAR(40)          not null,
-   NOMBREUSUARIO        VARCHAR(40)          not null,
-   constraint PK_USUARIO_RESIDUO primary key (NOMBRERESIDUO, NOMBREUSUARIO)
-);
-
-/*==============================================================*/
-/* Index: USUARIO_RESIDUO_PK                                    */
-/*==============================================================*/
-create unique index USUARIO_RESIDUO_PK on USUARIO_RESIDUO (
-NOMBRERESIDUO,
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Index: USUARIO_RESIDUO2_FK                                   */
-/*==============================================================*/
-create  index USUARIO_RESIDUO2_FK on USUARIO_RESIDUO (
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Index: USUARIO_RESIDUO_FK                                    */
-/*==============================================================*/
-create  index USUARIO_RESIDUO_FK on USUARIO_RESIDUO (
-NOMBRERESIDUO
-);
-
-/*==============================================================*/
-/* Table: USUARIO_TRATAMIENTO                                   */
-/*==============================================================*/
-create table USUARIO_TRATAMIENTO (
-   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   NOMBREUSUARIO        VARCHAR(40)          not null,
-   constraint PK_USUARIO_TRATAMIENTO primary key (NOMBRETRATAMIENTO, NOMBREUSUARIO)
-);
-
-/*==============================================================*/
-/* Index: USUARIO_PROCESO_PK                                    */
-/*==============================================================*/
-create unique index USUARIO_PROCESO_PK on USUARIO_TRATAMIENTO (
-NOMBRETRATAMIENTO,
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Index: USUARIO_PROCESO2_FK                                   */
-/*==============================================================*/
-create  index USUARIO_PROCESO2_FK on USUARIO_TRATAMIENTO (
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Index: USUARIO_PROCESO_FK                                    */
-/*==============================================================*/
-create  index USUARIO_PROCESO_FK on USUARIO_TRATAMIENTO (
-NOMBRETRATAMIENTO
-);
-
-alter table RESIDUO_CONTROL
-   add constraint FK_RESIDUO__RESIDUO_C_CONTROL foreign key (NOMBRECONTROL)
-      references CONTROL (NOMBRECONTROL)
+alter table CONTROL
+   add constraint FK_CONTROL_RESIDUO_C_RESIDUO foreign key (TIPORESIDUO)
+      references RESIDUO (TIPORESIDUO)
       on delete restrict on update restrict;
 
-alter table RESIDUO_CONTROL
-   add constraint FK_RESIDUO__RESIDUO_C_RESIDUO foreign key (NOMBRERESIDUO)
-      references RESIDUO (NOMBRERESIDUO)
-      on delete restrict on update restrict;
-
-alter table RESIDUO_TRATAMIENTO
-   add constraint FK_RESIDUO__RESIDUO_T_TRATAMIE foreign key (NOMBRETRATAMIENTO)
+alter table CONTROL
+   add constraint FK_CONTROL_TRATAMIEN_TRATAMIE foreign key (NOMBRETRATAMIENTO)
       references TRATAMIENTO (NOMBRETRATAMIENTO)
       on delete restrict on update restrict;
 
-alter table RESIDUO_TRATAMIENTO
-   add constraint FK_RESIDUO__RESIDUO_T_RESIDUO foreign key (NOMBRERESIDUO)
-      references RESIDUO (NOMBRERESIDUO)
-      on delete restrict on update restrict;
-
-alter table TRATAMIENTO_CONTROL
-   add constraint FK_TRATAMIE_TRATAMIEN_CONTROL foreign key (NOMBRECONTROL)
-      references CONTROL (NOMBRECONTROL)
-      on delete restrict on update restrict;
-
-alter table TRATAMIENTO_CONTROL
-   add constraint FK_TRATAMIE_TRATAMIEN_TRATAMIE foreign key (NOMBRETRATAMIENTO)
-      references TRATAMIENTO (NOMBRETRATAMIENTO)
-      on delete restrict on update restrict;
-
-alter table USUARIO_CONTROL
-   add constraint FK_USUARIO__USUARIO_C_CONTROL foreign key (NOMBRECONTROL)
-      references CONTROL (NOMBRECONTROL)
-      on delete restrict on update restrict;
-
-alter table USUARIO_CONTROL
-   add constraint FK_USUARIO__USUARIO_C_USUARIO foreign key (NOMBREUSUARIO)
+alter table CONTROL
+   add constraint FK_CONTROL_USUARIO_C_USUARIO foreign key (NOMBREUSUARIO)
       references USUARIO (NOMBREUSUARIO)
       on delete restrict on update restrict;
-
-alter table USUARIO_RESIDUO
-   add constraint FK_USUARIO__USUARIO_R_RESIDUO foreign key (NOMBRERESIDUO)
-      references RESIDUO (NOMBRERESIDUO)
-      on delete restrict on update restrict;
-
-alter table USUARIO_RESIDUO
-   add constraint FK_USUARIO__USUARIO_R_USUARIO foreign key (NOMBREUSUARIO)
-      references USUARIO (NOMBREUSUARIO)
-      on delete restrict on update restrict;
-
-alter table USUARIO_TRATAMIENTO
-   add constraint FK_USUARIO__USUARIO_T_TRATAMIE foreign key (NOMBRETRATAMIENTO)
-      references TRATAMIENTO (NOMBRETRATAMIENTO)
-      on delete restrict on update restrict;
-
-alter table USUARIO_TRATAMIENTO
-   add constraint FK_USUARIO__USUARIO_T_USUARIO foreign key (NOMBREUSUARIO)
-      references USUARIO (NOMBREUSUARIO)
-      on delete restrict on update restrict;
-
+      
 INSERT INTO `usuario` (`NOMBREUSUARIO`, `CONTRASENAUSUARIO`, `FECHANACIMIENTOUSUARIO`, `CORREO`) VALUES
 ('Anuel', '1234', '2001-01-01', 'anuel@hotmail.com'),
 ('Ostin', '12345', '2001-01-01', 'lamarrash@hotmail.com');
