@@ -78,7 +78,7 @@
                 <section class="py-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-11">
+                            <div class="col-lg-12">
                                 <h1 class="font-weight-bold mb-0">Controles</h1>
                                 <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
                             </div>                            
@@ -103,10 +103,20 @@
                         </div>
                     </div>
                 </section>
-                <section class="py-3">
-                    <div class="container">
-                        
-                    </div>                    
+                <section>
+                    <div class="container pt-4">
+                        <div class="card">
+                            <div class="card-body">                         
+                                 <div class="row">                              
+                                      <div class="form-group col-lg-12">
+                                        <div class="col-lg-12">
+                                            <h4 class="font-weight-bold mb-0">Control Creado Exitosamente!</h4>
+                                        </div>
+                                      </div>                                                                      
+                                  </div>                                   
+                            </div>
+                        </div>
+                    </div>
                 </section>
                 
             </div>

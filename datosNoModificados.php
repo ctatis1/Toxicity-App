@@ -39,9 +39,9 @@
            </div> 
            <div class="menu">
               <!--Buscar logos más accurate-->
-               <a href="menuprincipal.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
+               <a href="inicio.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
+               <a href="residuos.php" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
+               <a href="procedimiento.php" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
                <a href="controles.php" class="text-light"><i class = "icon ion-md-list lead" ></i>Controles</a>
                <a href="#" class="text-light"><i class = "icon ion-md-stats lead" ></i> Estadísticas</a>
                <a href="perfil.php" class="text-light"><i class = "icon ion-md-person lead" ></i> Perfil</a>
@@ -64,7 +64,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['usuario']?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Cuenta</a>
+                      <a class="dropdown-item" href="perfil.php">Cuenta</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Cerrar Sesion</a>
                     </div>

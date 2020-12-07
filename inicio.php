@@ -1,17 +1,11 @@
 <?php
-    session_start();  
-    $usu= $_SESSION['usuario'];   
-    if ($usu==null || $usu=''){
+    session_start();
+    $var= $_SESSION['usuario'];
+    if ($var==null || $var=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
-    if(!$resultado){
-        die("error");
-    }else{
-        $row=mysqli_fetch_assoc($resultado);  
-    }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -25,7 +19,7 @@
     <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
     <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosPerfil.css">
+    <link rel="stylesheet" href="estilosInicio.css">
    
     
 
@@ -49,7 +43,7 @@
         </div>
         
         <div class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bgLight border-bottom pb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bgLight">
              <!--el contenedor no  sirve bien, revisarlo later-->
               <div class="contenedor">
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
@@ -74,42 +68,30 @@
             </div>
             </nav>
             
-            <div id="contenido">
-                <section class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <h1 class="font-weight-bold mb-0">Controles</h1>
-                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
-                            </div>                            
-                        </div>
-                    </div>                    
-                </section>
-                
+            <div id="content">
                 <section>
                     <div class="container">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
-                                   <div class="row">                                                              
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearControl.php">Crear un nuevo control</a></button>
-                                    </div>                                                               
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verControles.php">Ver controles</a></button>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h1 class="font-weight-bold mb-0">Bienvenido a Toxystem</h1>
+                                <p></p>
+                                <h2 class="font-weight-bold mb-0">¿Quiénes somos?</h2>
+                                <p class="lead text-muted" style="text-align: justify">Toxystem es un sistema que brinda la información necesaria para realizar 
+                                una correcta separación, manipulación y control de los residuos peligrosos. A partir de estos datos es posible implementar nuevas estrategias y ayuda a la toma de decisiones.                                
+                                </p>
+                                <h2 class="font-weight-bold mb-0">¿Cuál es nuestro propósito?</h2>
+                                <p class="lead text-muted" style="text-align: justify">Toxystem busca ayudar a las pequeñas, medianas y grandes empresas con la adecuada gestión de los residuos peligrosos que producen, de forma que se reduzcan los costos y el impacto que sus acciones tienen sobre el equilibrio ambiental.                       
+                                </p>
                             </div>
+                            <div class="col-lg-3">
+                            
+                            </div>
+                            
                         </div>
                     </div>
                 </section>
-                <section class="py-3">
-                    <div class="container">
-                        
-                    </div>                    
-                </section>
-                
             </div>
+                
         </div>
     </div>
     

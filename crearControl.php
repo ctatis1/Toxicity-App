@@ -4,12 +4,14 @@
     if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
-    if(!$resultado){
+    $datosR= "SELECT TIPORESIDUO FROM residuo";
+    $resultadoR=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosR);
+    
+    $datosT= "SELECT NOMBRETRATAMIENTO FROM tratamiento";
+    $resultadoT=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosT);
+    
+    if(!$resultadoR && !$resultadoT){
         die("error");
-    }else{
-        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
 
@@ -39,9 +41,9 @@
            </div> 
            <div class="menu">
               <!--Buscar logos más accurate-->
-               <a href="menuprincipal.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
+               <a href="inicio.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
+               <a href="residuos.php" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
+               <a href="procedimiento.php" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
                <a href="controles.php" class="text-light"><i class = "icon ion-md-list lead" ></i>Controles</a>
                <a href="#" class="text-light"><i class = "icon ion-md-stats lead" ></i> Estadísticas</a>
                <a href="perfil.php" class="text-light"><i class = "icon ion-md-person lead" ></i> Perfil</a>
@@ -64,7 +66,7 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $_SESSION['usuario']?></a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <a class="dropdown-item" href="#">Cuenta</a>
+                      <a class="dropdown-item" href="perfil.php">Cuenta</a>
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="logout.php">Cerrar Sesion</a>
                     </div>
@@ -93,10 +95,10 @@
                                 <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
                                    <div class="row">                                                              
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="modificarDatosCuenta.php">Crear un nuevo control</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearControl.php">Crear un nuevo control</a></button>
                                     </div>                                                               
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="modificarDatosCuenta.php">Ver controles</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verControles.php">Ver controles</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -107,7 +109,42 @@
                     <div class="container pt-4">
                         <div class="card">
                             <div class="card-body">
-                                <form action="validarModificarDatosCuenta.php" method="post">   
+                                <form action="validarCrearControl.php" method="post">  
+                                 <div class="row">                              
+                                  <div class="form-group col-lg-6">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Nombre del Control</label>
+                                    <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Ingrese un nombre para identificar al Control">
+                                    <p></p>
+                                  </div> 
+                                </div>                                 
+                                  <div class="row">  
+                                  <div class="form-group col-lg-6">
+                                    <label for="residuo" class="font-weight-bold">Tipo de Residuo</label>                                
+                                      <select name="residuo" class="form-control">
+                                          <?php
+                                            while($rowR=mysqli_fetch_array($resultadoR)){
+                                            ?>                            
+                                        <option selected value="<?php echo $rowR['TIPORESIDUO'];?>"><?php echo $rowR['TIPORESIDUO']?></option>
+                                          <?php
+                                            }
+                                            ?>                                
+                                      </select>
+                                    <p></p>
+                                  </div>  
+                                  <div class="form-group col-lg-6">
+                                    <label for="tratamiento" class="font-weight-bold">Tratamiento</label>
+                                    <select name="tratamiento" class="form-control">
+                                        <?php
+                                            while($rowT=mysqli_fetch_array($resultadoT)){
+                                            ?>                            
+                                        <option selected value="<?php echo $rowT['NOMBRETRATAMIENTO'];?>"><?php echo $rowT['NOMBRETRATAMIENTO']?></option>
+                                          <?php
+                                            }
+                                            ?>  
+                                      </select>
+                                    <p></p>
+                                    </div>   
+                                  </div>                                                                           
                                  <div class="row">                              
                                   <div class="form-group col-lg-6">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Fecha de Inicio</label>
@@ -123,7 +160,7 @@
                                   <div class="row">                              
                                   <div class="form-group col-lg-12">
                                     <label for="exampleInputEmail1" class="font-weight-bold">Descripción</label>
-                                      <textarea type="text" rows="10" class="form-control w-20" id="Descripcion" name="Descripcion" placeholder="Ingrese la descripción del avance del control"></textarea>
+                                      <textarea type="text" rows="6" class="form-control w-20" id="Descripcion" name="Descripcion" placeholder="Ingrese la descripción del avance del control"></textarea>
                                     <p></p>
                                   </div>                        
                                   </div>                               

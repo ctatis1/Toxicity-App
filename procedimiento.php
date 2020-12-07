@@ -1,17 +1,11 @@
 <?php
-    session_start();  
-    $usu= $_SESSION['usuario'];   
-    if ($usu==null || $usu=''){
+    session_start();
+    $var= $_SESSION['usuario'];
+    if ($var==null || $var=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
-    if(!$resultado){
-        die("error");
-    }else{
-        $row=mysqli_fetch_assoc($resultado);  
-    }
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -25,7 +19,7 @@
     <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
     <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosPerfil.css">
+    <link rel="stylesheet" href="estilosProcedimiento.css">
    
     
 
@@ -49,7 +43,7 @@
         </div>
         
         <div class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bgLight border-bottom pb-3">
+            <nav class="navbar navbar-expand-lg navbar-light bgLight">
              <!--el contenedor no  sirve bien, revisarlo later-->
               <div class="contenedor">
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
@@ -74,42 +68,38 @@
             </div>
             </nav>
             
-            <div id="contenido">
-                <section class="py-3">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-11">
-                                <h1 class="font-weight-bold mb-0">Controles</h1>
-                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
-                            </div>                            
-                        </div>
-                    </div>                    
-                </section>
-                
+            <div id="content">
                 <section>
                     <div class="container">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
-                                   <div class="row">                                                              
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearControl.php">Crear un nuevo control</a></button>
-                                    </div>                                                               
-                                    <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verControles.php">Ver controles</a></button>
-                                    </div>
-                                </div>
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h1 class="font-weight-bold mb-0">Manejo de Residuos Peligrosos</h1>
+                                <p></p>
+                                <h2 class="font-weight-bold mb-0">1. Identificación</h2>
+                                <p class="lead text-muted" style="text-align: justify">Todos los recipientes que contengan residuos peligrosos deben contar una etiqueta de identificación cuya información varía según la legislación de cada lugar, debe incluir el nombre del residuo y el tipo al que pertenece.                               
+                                </p>
+                                <h2 class="font-weight-bold mb-0">2. Almacenamiento temporal</h2>
+                                <p class="lead text-muted" style="text-align: justify">Una vez que los recipientes se llenen, deberán llevarse al Almacén Temporal de Residuos Peligrosos, lugar asignado para mantener los recipientes con los residuos
+                                peligrosos generados en las instalaciones, antes de ser enviados a disposición final.                           
+                                </p>
+                                <p class="lead text-muted" style="text-align: justify">El Almacén Temporal de Residuos Peligrosos debe estar separado de las áreas de producción y almacenamiento de materias primas. Debe contar con muros de contención, fosas de retención, pasillos amplios, dispositivos para extinción de incendios, señalamiento, ventilación e iluminación apropiada.                          
+                                </p>
+                                <h2 class="font-weight-bold mb-0">3. Transporte</h2>
+                                <p class="lead text-muted" style="text-align: justify">Se debe contar con vehículos autorizados para el transporte de este tipo de residuos. El conductor debe estar capacitado y contar con todas las pólizas y seguros en caso de accidentes. Se debe llevar una bitácora sobre la inspección de material.                          
+                                </p>
+                                <h2 class="font-weight-bold mb-0">4. Disposición Final</h2>
+                                <p class="lead text-muted" style="text-align: justify">La disposición final de residuos peligrosos se hace a través de empresas autorizadas, tanto para su transportación fuera de la planta así como para su reciclaje, incineración o cualquier otro método utilizado para su manejo final. La documentación que acredite a las empresas para el manejo de residuos deberá solicitarse antes de la contratación                      
+                                </p>
                             </div>
+                            <div class="col-lg-3">
+                            
+                            </div>
+                            
                         </div>
                     </div>
                 </section>
-                <section class="py-3">
-                    <div class="container">
-                        
-                    </div>                    
-                </section>
-                
             </div>
+                
         </div>
     </div>
     

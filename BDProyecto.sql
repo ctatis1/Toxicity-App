@@ -1,160 +1,163 @@
-/*==============================================================*/
-/* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     11/11/2020 10:17:02 p. m.                    */
-/*==============================================================*/
+-- phpMyAdmin SQL Dump
+-- version 5.0.3
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 07-12-2020 a las 04:49:56
+-- Versión del servidor: 10.4.14-MariaDB
+-- Versión de PHP: 7.2.34
 
-/*
-drop index CONTROL_PK;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-drop table CONTROL;
 
-drop index RESIDUO_PK;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-drop table RESIDUO;
+--
+-- Base de datos: `bdproyecto`
+--
 
-drop index RESIDUO_CONTROL_FK;
+-- --------------------------------------------------------
 
-drop index RESIDUO_CONTROL2_FK;
+--
+-- Estructura de tabla para la tabla `control`
+--
 
-drop index RESIDUO_CONTROL_PK;
+CREATE TABLE `control` (
+  `NOMBRECONTROL` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `NOMBREUSUARIO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `TIPORESIDUO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `NOMBRETRATAMIENTO` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DESCRIPCIONCONTROL` varchar(600) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `FECHACONTROLINICIAL` date NOT NULL,
+  `FECHACONTROLFINAL` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-drop table RESIDUO_CONTROL;
+--
+-- Volcado de datos para la tabla `control`
+--
 
-drop index RESIDUO_PROCESO_FK;
+INSERT INTO `control` (`NOMBRECONTROL`, `NOMBREUSUARIO`, `TIPORESIDUO`, `NOMBRETRATAMIENTO`, `DESCRIPCIONCONTROL`, `FECHACONTROLINICIAL`, `FECHACONTROLFINAL`) VALUES
+('', 'Anuel', 'Corrosivos', 'Disposición Final', 'Ella ya no piensa en él (En él)\r\nÉl la convirtió en alguien que ella no e\'\r\nNo le basta dar amor y ser fiel (Ser fiel)\r\nHoy se va modo Romeo, ella quiere beber\r\nY no (Y no), ya no confía en nadie y no (No)\r\nHoy se bebe y pa\' la calle y woo (Woo)\r\nEl DJ que le ponga el dembow (Dembow), uah-uah', '2020-12-17', '2020-12-17'),
+('controla', 'Anuel', 'Explosivos', 'Disposición Final', 'asdasd', '2001-02-01', '2001-02-01'),
+('sdf', 'Anuel', 'Tóxicos', 'Transporte', 'sdf', '2001-01-01', '2001-01-01');
 
-drop index RESIDUO_PROCESO2_FK;
+-- --------------------------------------------------------
 
-drop index RESIDUO_PROCESO_PK;
+--
+-- Estructura de tabla para la tabla `residuo`
+--
 
-drop table RESIDUO_TRATAMIENTO;
+CREATE TABLE `residuo` (
+  `TIPORESIDUO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DESCRIPCIONRESIDUO` varchar(1000) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-drop index PROCESO_PK;
+--
+-- Volcado de datos para la tabla `residuo`
+--
 
-drop table TRATAMIENTO;
+INSERT INTO `residuo` (`TIPORESIDUO`, `DESCRIPCIONRESIDUO`) VALUES
+('Corrosivos', 'Son residuos que desgastan y erosionan las superficies con las que tienen contacto bajo determinadas condiciones desfavorables. Tienden a ser altamente peligrosos si son liberados en cualquier espacio. Reaccionan por contacto con otros residuos o contaminantes tóxicos. Ejemplos de residuos corrosivos son las sustancias ácidas (ácido clorhídrico, ácido sulfúrico) o muy alcalinas.'),
+('Explosivos', 'Son muy volátiles si no se gestionan por profesionales que sigan medidas de seguridad indicadas para estos casos. Generalmente su almacenamiento excesivo o descuidado es altamente peligroso. La acción explosiva que generan es causada al entrar en contacto con una fuente de calor o por reacciones químicas ocasionadas por choques, fricciones o altas temperaturas. Ejemplos de este tipo de residuo son la pólvora, los peróxidos y los cloratos.'),
+('Inflamables', 'En condiciones de temperaturas adversas y expuestos a fuentes de calor causan rápidamente un incendio. Los cambios químicos, la fricción o la humedad son causas muy habituales que provocan que ardan con facilidad. No controlar la gestión de estos residuos sensibles a altas temperaturas representa un riesgo para los entornos vulnerables. Ejemplos de residuos inflamables: el fósforo, los aldehídos y los hidrocarburos.'),
+('Reactivos', 'Por su inestabilidad pueden llegar a ser explosivos en distintas situaciones. Esto sucede debido a la acción de temperaturas y fuerzas variables. Si entran en contacto con el agua pueden liberar gases, vapores y humos tóxicos al medio ambiente. Residuos que contengan amonio, magnesio o cloruro de acetileno están entre los principales ejemplos de los residuos reactivos.'),
+('Tóxicos', 'Pueden ser orgánicos e inorgánicos. Por el alto contenido de sustancias tóxicas que tienen provocan efectos nocivos en la salud humana y en el medio ambiente. La alta capacidad destructora que poseen los vuelve una amenaza, incluso, para espacios distantes al origen de la emisión. Suelen añadirse como ingredientes a varios productos populares como los combustibles, pinturas, baterías, equipos electrónicos.');
 
-drop index PROCESO_CONTROL_FK;
+-- --------------------------------------------------------
 
-drop index PROCESO_CONTROL2_FK;
+--
+-- Estructura de tabla para la tabla `tratamiento`
+--
 
-drop index PROCESO_CONTROL_PK;
+CREATE TABLE `tratamiento` (
+  `NOMBRETRATAMIENTO` varchar(60) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DESCRIPCIONTRATAMIENTO` varchar(1000) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-drop table TRATAMIENTO_CONTROL;
+--
+-- Volcado de datos para la tabla `tratamiento`
+--
 
-drop index USUARIO_PK;
+INSERT INTO `tratamiento` (`NOMBRETRATAMIENTO`, `DESCRIPCIONTRATAMIENTO`) VALUES
+('Almacenamiento temporal', 'Una vez que los recipientes se llenen, deberán llevarse al Almacén Temporal de Residuos Peligrosos, lugar asignado para mantener los recipientes con los residuos peligrosos generados en las instalaciones, antes de ser enviados a disposición final.\r\n\r\nEl Almacén Temporal de Residuos Peligrosos debe estar separado de las áreas de producción y almacenamiento de materias primas. Debe contar con muros de contención, fosas de retención, pasillos amplios, dispositivos para extinción de incendios, señalamiento, ventilación e iluminación apropiada.'),
+('Disposición Final', 'La disposición final de residuos peligrosos se hace a través de empresas autorizadas, tanto para su transportación fuera de la planta así como para su reciclaje, incineración o cualquier otro método utilizado para su manejo final. La documentación que acredite a las empresas para el manejo de residuos deberá solicitarse antes de la contratación'),
+('Identificación', 'Todos los recipientes que contengan residuos peligrosos deben contar una etiqueta de identificación cuya información varía según la legislación de cada lugar, debe incluir el nombre del residuo y el tipo al que pertenece.'),
+('Transporte', 'Se debe contar con vehículos autorizados para el transporte de este tipo de residuos. El conductor debe estar capacitado y contar con todas las pólizas y seguros en caso de accidentes. Se debe llevar una bitácora sobre la inspección de material.');
 
-drop table USUARIO;
+-- --------------------------------------------------------
 
-drop index USUARIO_CONTROL2_FK;
+--
+-- Estructura de tabla para la tabla `usuario`
+--
 
-drop index USUARIO_CONTROL_FK;
+CREATE TABLE `usuario` (
+  `NOMBREUSUARIO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `CONTRASENAUSUARIO` varchar(10) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `FECHANACIMIENTOUSUARIO` date NOT NULL,
+  `CORREO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
-drop index USUARIO_CONTROL_PK;
+--
+-- Volcado de datos para la tabla `usuario`
+--
 
-drop table USUARIO_CONTROL;
-
-drop index USUARIO_RESIDUO_FK;
-
-drop index USUARIO_RESIDUO2_FK;
-
-drop index USUARIO_RESIDUO_PK;
-
-drop table USUARIO_RESIDUO;
-
-drop index USUARIO_PROCESO_FK;
-
-drop index USUARIO_PROCESO2_FK;
-
-drop index USUARIO_PROCESO_PK;
-
-drop table USUARIO_TRATAMIENTO;
-*/
-
-/*==============================================================*/
-/* Table: RESIDUO                                               */
-/*==============================================================*/
-create table RESIDUO (
-   TIPORESIDUO          VARCHAR(40)          not null,
-   DESCRIPCIONRESIDUO   VARCHAR(400)         not null,
-   constraint PK_RESIDUO primary key (TIPORESIDUO)
-);
-
-/*==============================================================*/
-/* Index: RESIDUO_PK                                            */
-/*==============================================================*/
-create unique index RESIDUO_PK on RESIDUO (
-TIPORESIDUO
-);
-
-/*==============================================================*/
-/* Table: TRATAMIENTO                                           */
-/*==============================================================*/
-create table TRATAMIENTO (
-   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   DESCRIPCIONTRATAMIENTO VARCHAR(400)         not null,
-   constraint PK_TRATAMIENTO primary key (NOMBRETRATAMIENTO)
-);
-
-/*==============================================================*/
-/* Index: PROCESO_PK                                            */
-/*==============================================================*/
-create unique index PROCESO_PK on TRATAMIENTO (
-NOMBRETRATAMIENTO
-);
-
-/*==============================================================*/
-/* Table: USUARIO                                               */
-/*==============================================================*/
-create table USUARIO (
-   NOMBREUSUARIO        VARCHAR(40)          not null,
-   CONTRASENAUSUARIO    VARCHAR(10)          not null,
-   FECHANACIMIENTOUSUARIO DATE                 not null,
-   CORREO               VARCHAR(40)          not null,
-   constraint PK_USUARIO primary key (NOMBREUSUARIO)
-);
-
-/*==============================================================*/
-/* Index: USUARIO_PK                                            */
-/*==============================================================*/
-create unique index USUARIO_PK on USUARIO (
-NOMBREUSUARIO
-);
-
-/*==============================================================*/
-/* Table: CONTROL                                               */
-/*==============================================================*/
-create table CONTROL (
-   NOMBRECONTROL        VARCHAR(40)          not null,
-   NOMBREUSUARIO        VARCHAR(40)          not null,
-   TIPORESIDUO          VARCHAR(40)          not null,
-   NOMBRETRATAMIENTO    VARCHAR(15)          not null,
-   DESCRIPCIONCONTROL   VARCHAR(600)         not null,
-   FECHACONTROLINICIAL  DATE                 not null,
-   FECHACONTROLFINAL    DATE                 not null,
-   constraint PK_CONTROL primary key (NOMBRECONTROL)
-);
-
-/*==============================================================*/
-/* Index: CONTROL_PK                                            */
-/*==============================================================*/
-create unique index CONTROL_PK on CONTROL (
-NOMBRECONTROL
-);
-
-alter table CONTROL
-   add constraint FK_CONTROL_RESIDUO_C_RESIDUO foreign key (TIPORESIDUO)
-      references RESIDUO (TIPORESIDUO)
-      on delete restrict on update restrict;
-
-alter table CONTROL
-   add constraint FK_CONTROL_TRATAMIEN_TRATAMIE foreign key (NOMBRETRATAMIENTO)
-      references TRATAMIENTO (NOMBRETRATAMIENTO)
-      on delete restrict on update restrict;
-
-alter table CONTROL
-   add constraint FK_CONTROL_USUARIO_C_USUARIO foreign key (NOMBREUSUARIO)
-      references USUARIO (NOMBREUSUARIO)
-      on delete restrict on update restrict;
-      
 INSERT INTO `usuario` (`NOMBREUSUARIO`, `CONTRASENAUSUARIO`, `FECHANACIMIENTOUSUARIO`, `CORREO`) VALUES
 ('Anuel', '1234', '2001-01-01', 'anuel@hotmail.com'),
 ('Ostin', '12345', '2001-01-01', 'lamarrash@hotmail.com');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `control`
+--
+ALTER TABLE `control`
+  ADD PRIMARY KEY (`NOMBRECONTROL`),
+  ADD UNIQUE KEY `CONTROL_PK` (`NOMBRECONTROL`),
+  ADD KEY `FK_CONTROL_RESIDUO_C_RESIDUO` (`TIPORESIDUO`),
+  ADD KEY `FK_CONTROL_TRATAMIEN_TRATAMIE` (`NOMBRETRATAMIENTO`),
+  ADD KEY `FK_CONTROL_USUARIO_C_USUARIO` (`NOMBREUSUARIO`);
+
+--
+-- Indices de la tabla `residuo`
+--
+ALTER TABLE `residuo`
+  ADD PRIMARY KEY (`TIPORESIDUO`),
+  ADD UNIQUE KEY `RESIDUO_PK` (`TIPORESIDUO`);
+
+--
+-- Indices de la tabla `tratamiento`
+--
+ALTER TABLE `tratamiento`
+  ADD PRIMARY KEY (`NOMBRETRATAMIENTO`),
+  ADD UNIQUE KEY `PROCESO_PK` (`NOMBRETRATAMIENTO`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`NOMBREUSUARIO`),
+  ADD UNIQUE KEY `USUARIO_PK` (`NOMBREUSUARIO`);
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `control`
+--
+ALTER TABLE `control`
+  ADD CONSTRAINT `FK_CONTROL_RESIDUO_C_RESIDUO` FOREIGN KEY (`TIPORESIDUO`) REFERENCES `residuo` (`TIPORESIDUO`),
+  ADD CONSTRAINT `FK_CONTROL_TRATAMIEN_TRATAMIE` FOREIGN KEY (`NOMBRETRATAMIENTO`) REFERENCES `tratamiento` (`NOMBRETRATAMIENTO`),
+  ADD CONSTRAINT `FK_CONTROL_USUARIO_C_USUARIO` FOREIGN KEY (`NOMBREUSUARIO`) REFERENCES `usuario` (`NOMBREUSUARIO`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

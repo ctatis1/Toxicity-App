@@ -13,7 +13,7 @@
         if($filas>0){
             session_start();
             $_SESSION['usuario']=$usuario;
-            header("location:menuprincipal.php");
+            header("location:inicio.php");
         }else {
             header("location:datosincorrectos.html");
         }

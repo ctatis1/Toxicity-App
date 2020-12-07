@@ -34,9 +34,9 @@
            </div> 
            <div class="menu">
               <!--Buscar logos más accurate-->
-               <a href="#" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
+               <a href="inicio.php" class="text-light"><i class = "icon ion-md-home lead" ></i> Inicio</a>
+               <a href="residuos.php" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
+               <a href="procedimiento.php" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
                <a href="controles.php" class="text-light"><i class = "icon ion-md-list lead" ></i>Controles</a>
                <a href="#" class="text-light"><i class = "icon ion-md-stats lead" ></i> Estadísticas</a>
                <a href="perfil.php" class="text-light"><i class = "icon ion-md-person lead" ></i> Perfil</a>
@@ -69,6 +69,27 @@
             </div>
             </nav>
         </div>
+    
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-9">
+                                <h1 class="font-weight-bold mb-0">Bienvenido a Toxystem</h1>
+                                <p></p>
+                                <h2 class="font-weight-bold mb-0">¿Quiénes somos?</h2>
+                                <p class="lead text-muted" style="text-align: justify">Toxystem es un sistema que brinda la información necesaria para realizar 
+                                una correcta separación, manipulación y control de los residuos peligrosos. A partir de estos datos es posible implementar nuevas estrategias y ayuda a la toma de decisiones.                                
+                                </p>
+                                <h2 class="font-weight-bold mb-0">¿Cuál es nuestro propósito?</h2>
+                                <p class="lead text-muted" style="text-align: justify">Toxystem busca ayudar a las pequeñas, medianas y grandes empresas con la adecuada gestión de los residuos peligrosos que producen, de forma que se reduzcan los costos y el impacto que sus acciones tienen sobre el equilibrio ambiental.                       
+                                </p>
+                            </div>
+                            <div class="col-lg-3">
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+           
     </div>
     
    

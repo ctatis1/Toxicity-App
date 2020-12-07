@@ -1,15 +1,14 @@
+
 <?php
     session_start();  
     $usu= $_SESSION['usuario'];   
     if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
+    $datosU= "SELECT NOMBRECONTROL, DESCRIPCIONCONTROL , FECHACONTROLINICIAL, FECHACONTROLFINAL FROM control WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
     $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
     if(!$resultado){
         die("error");
-    }else{
-        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
 
@@ -103,10 +102,37 @@
                         </div>
                     </div>
                 </section>
-                <section class="py-3">
-                    <div class="container">
-                        
-                    </div>                    
+                <section>
+                    <div class="container pt-4">                                                       
+                            <?php
+                                while($row=mysqli_fetch_array($resultado)){
+                            ?>                                                         
+                        <div class="card">
+                            <div class="card-body">
+                                   <div class="row">      
+                                    <div class="col-lg-3">
+                                        <h5 class="text-muted">Nombre del Control</h5>
+                                        <h2 class="font-weight-bold"><?php echo $row["NOMBRECONTROL"];?></h2>
+                                    </div>                            
+                                    <div class="col-lg-8">
+                                        <h5 class="text-muted">Descripcion</h5>
+                                        <h2 class="font-weight-bold"><?php echo $row["DESCRIPCIONCONTROL"];?></h2>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h5 class="text-muted">Fecha Inicial</h5>
+                                        <h2 class="font-weight-bold"><?php echo $row["FECHACONTROLINICIAL"];?></h2>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <h5 class="text-muted">Fecha Final</h5>
+                                        <h2 class="font-weight-bold"><?php echo $row["FECHACONTROLFINAL"];?></h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                    <?php 
+                                        }
+                                            mysqli_free_result($resultado);?>
+                    </div>
                 </section>
                 
             </div>

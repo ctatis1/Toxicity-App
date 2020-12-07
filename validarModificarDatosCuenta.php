@@ -13,7 +13,7 @@
     if($resultado){
         header("location:datosModificados.php");
     }else{
-        header("location:menuprincipal.php");
+        header("location:inicio.php");
     }
     mysqli_free_result($resultado);
     mysqli_close($conexion);
