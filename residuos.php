@@ -4,6 +4,11 @@
     if ($var==null || $var=''){
         header("location:noAutorizado.html");
     }
+    $datosU= "SELECT * FROM residuo";
+    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
+    if(!$resultado){
+        die("error");
+    }
 ?>
 
 
@@ -43,7 +48,7 @@
         </div>
         
         <div class="w-100">
-            <nav class="navbar navbar-expand-lg navbar-light bgLight">
+            <nav class="navbar navbar-expand-lg navbar-light bgLight border-bottom pb-3">
              <!--el contenedor no  sirve bien, revisarlo later-->
               <div class="contenedor">
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
@@ -70,37 +75,37 @@
             
             <div id="content">
                 <section>
-                    <div class="container w-100">
+                    <div class="container w-100 ">
                         <div class="row">
-                            <div class="col-lg-9">
+                            <div class="col-lg-12 m-0 p-3">
                                 <h1 class="font-weight-bold mb-0">Residuos Peligrosos</h1>
                                 <p class="lead text-muted" style="text-align: justify">Los residuos peligrosos son aquellos que generan cualquier tipo de riesgo para los humanos y el medio ambiente. Por su composición los residuos peligrosos necesitan una gestión correcta para evitar riesgos elevados de contaminación.                               
                                 </p>
-                                <h3 class="font-weight-bold mb-0">Residuos Corrosivos</h3>
-                                <p class="lead text-muted" style="text-align: justify">Son residuos que desgastan y erosionan las superficies con las que tienen contacto bajo determinadas condiciones desfavorables. Tienden a ser altamente peligrosos si son liberados en cualquier espacio. Reaccionan por contacto con otros residuos o contaminantes tóxicos. Ejemplos de residuos corrosivos son las sustancias ácidas (ácido clorhídrico, ácido sulfúrico) o muy alcalinas. 
-                                </p>
-                                <h3 class="font-weight-bold mb-0">Residuos Reactivos</h3>
-                                <p class="lead text-muted" style="text-align: justify">Por su inestabilidad pueden llegar a ser explosivos en distintas situaciones. Esto sucede debido a la acción de temperaturas y fuerzas variables. Si entran en contacto con el agua pueden liberar gases, vapores y humos tóxicos al medio ambiente. Residuos que contengan amonio, magnesio o cloruro de acetileno están entre los principales ejemplos de los residuos reactivos. 
-                                </p>
-                                <h3 class="font-weight-bold mb-0">Residuos Explosivos</h3>
-                                <p class="lead text-muted" style="text-align: justify">Son muy volátiles si no se gestionan por profesionales que sigan medidas de seguridad indicadas para estos casos. Generalmente su almacenamiento excesivo o descuidado es altamente peligroso. La acción explosiva que generan es causada al entrar en contacto con una fuente de calor o por reacciones químicas ocasionadas por choques, fricciones o altas temperaturas. Ejemplos de este tipo de residuo son la pólvora, los peróxidos y los cloratos. 
-                                </p>
-                                <h3 class="font-weight-bold mb-0">Residuos Inflamables</h3>
-                                <p class="lead text-muted" style="text-align: justify">En condiciones de temperaturas adversas y expuestos a fuentes de calor causan rápidamente un incendio. Los cambios químicos, la fricción o la humedad son causas muy habituales que provocan que ardan con facilidad. No controlar la gestión de estos residuos sensibles a altas temperaturas representa un riesgo para los entornos vulnerables. Ejemplos de residuos inflamables: el fósforo, los aldehídos y los hidrocarburos.
-                                </p>
-                                <h3 class="font-weight-bold mb-0">Residuos Tóxicos</h3>
-                                <p class="lead text-muted" style="text-align: justify">Pueden ser orgánicos e inorgánicos. Por el alto contenido de sustancias tóxicas que tienen provocan efectos nocivos en la salud humana y en el medio ambiente. La alta capacidad destructora que poseen los vuelve una amenaza, incluso, para espacios distantes al origen de la emisión. Suelen añadirse como ingredientes a varios productos populares como los combustibles, pinturas, baterías, equipos electrónicos.
-                                </p>
-                            </div>
-                            <div class="col-lg-3">
-                            
-                            </div>
-                            
+                            </div>                                                        
                         </div>
                     </div>
                 </section>
-            </div>
-                
+                <section>
+                            <?php
+                                while($row=mysqli_fetch_array($resultado)){
+                            ?>                                                         
+                    <div class="container pb-3">                                                       
+                        <div class="card">
+                            <div class="card-body">                                                                                      
+                                   <div class="row">                                                              
+                                    <div class="col-lg-12">
+                                        <h3 class="font-weight-bold mb-0"><?php echo $row["TIPORESIDUO"];?></h3>
+                                        <p class="lead text-muted" style="text-align: justify"><?php echo $row["DESCRIPCIONRESIDUO"];?></p>
+                                    </div>                       
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                         <?php 
+                              }
+                         mysqli_free_result($resultado);?>
+                </section> 
+            </div>  
         </div>
     </div>
     
