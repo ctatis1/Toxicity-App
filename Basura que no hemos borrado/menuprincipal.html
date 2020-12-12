@@ -1,0 +1,44 @@
+<?php
+    session_start();
+?>
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, minimum-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <link rel="stylesheet" href="estilosMenuPrincipal.css">
+
+</head>
+
+<body>
+    <form class="formulario">
+        <header>
+            <div class="menuSuperior">
+                <input type="checkbox" id="check">
+                <label for="check" class="fas fa-bars"></label>
+                <img src="logo.png" alt="">
+                <nav class="menuLateral">
+                    <li><a href="residuos.html"></a>Residuos</li>
+                    <li>Procedimientos</li>
+                    <li>Informes</li>
+                    <li>Estadísticas</li>
+                    <li>Transporte</li>                    
+                </nav>
+                <nav class="menuTop">
+                    <ul>
+                        <li><a href="menuprincipal.html">Inicio</a></li>
+                        <li><a href="cuenta.html">Cuenta</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <h1>Bienvenido <?php echo $_SESSION['usuario']></h1>
+    </form>
+</body>
+
+</html>
