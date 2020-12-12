@@ -4,7 +4,7 @@
     if ($var==null || $var=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM tratamiento";
+    $datosU= "SELECT * FROM residuo";
     $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
     if(!$resultado){
         die("error");
@@ -78,7 +78,7 @@
                     <div class="container pt-2 pb-3">
                         <div class="row">
                             <div class="col-lg-9">
-                                <h1 class="font-weight-bold mb-0">Manejo de Residuos Peligrosos</h1>
+                                <h1 class="font-weight-bold mb-0">Resultados de la Busqueda</h1>
                             </div>
                         </div>
                     </div>
@@ -92,8 +92,8 @@
                             <div class="card-body">                                                                                      
                                    <div class="row">                                                              
                                     <div class="col-lg-12">
-                                        <h3 class="font-weight-bold mb-0"><?php echo $row["NOMBRETRATAMIENTO"];?></h3>
-                                        <p class="lead text-muted" style="text-align: justify"><?php echo $row["DESCRIPCIONTRATAMIENTO"];?></p>
+                                        <h3 class="font-weight-bold mb-0"><?php echo $row["TIPORESIDUO"];?></h3>
+                                        <p class="lead text-muted" style="text-align: justify"><?php echo $row["DESCRIPCIONRESIDUO"];?></p>
                                     </div>                       
                                 </div>
                             </div>

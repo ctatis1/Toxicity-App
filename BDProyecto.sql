@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-12-2020 a las 04:49:56
+-- Tiempo de generación: 12-12-2020 a las 01:35:11
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -42,9 +42,10 @@ CREATE TABLE `control` (
 --
 
 INSERT INTO `control` (`NOMBRECONTROL`, `NOMBREUSUARIO`, `TIPORESIDUO`, `NOMBRETRATAMIENTO`, `DESCRIPCIONCONTROL`, `FECHACONTROLINICIAL`, `FECHACONTROLFINAL`) VALUES
-('', 'Anuel', 'Corrosivos', 'Disposición Final', 'Ella ya no piensa en él (En él)\r\nÉl la convirtió en alguien que ella no e\'\r\nNo le basta dar amor y ser fiel (Ser fiel)\r\nHoy se va modo Romeo, ella quiere beber\r\nY no (Y no), ya no confía en nadie y no (No)\r\nHoy se bebe y pa\' la calle y woo (Woo)\r\nEl DJ que le ponga el dembow (Dembow), uah-uah', '2020-12-17', '2020-12-17'),
 ('controla', 'Anuel', 'Explosivos', 'Disposición Final', 'asdasd', '2001-02-01', '2001-02-01'),
-('sdf', 'Anuel', 'Tóxicos', 'Transporte', 'sdf', '2001-01-01', '2001-01-01');
+('KEII', 'Anuel', 'Corrosivos', 'Disposición Final', 'Ella ya no piensa en él (En él)\r\nÉl la convirtió en alguien que ella no e\'\r\nNo le basta dar amor y ser fiel (Ser fiel)\r\nHoy se va modo Romeo, ella quiere beber\r\nY no (Y no), ya no confía en nadie y no (No)\r\nHoy se bebe y pa\' la calle y woo (Woo)\r\nEl DJ que le ponga el dembow (Dembow), uah-uah', '2020-12-17', '2020-12-17'),
+('PO ENCIMA', 'Ostin', 'Tóxicos', 'Transporte', '(`NOMBRECONTROL`, `NOMBREUSUARIO`, `TIPORESIDUO`, `NOMBRETRATAMIENTO`, `DESCRIPCIONCONTROL`, `FECHACONTROLINICIAL`, `FECHACONTROLFINAL`)', '2001-01-01', '2001-01-17'),
+('SIGUES CON ÉL ', 'Ostin', 'Explosivos', 'Almacenamiento temporal', '¿Por qué sigues con él?\r\nSi borracha me confesaste que él no te lo hace bien\r\nTú le calientas la comida, pero él no te sabe comer (okay)\r\nSi pruebas, no vas a volver (no), no-oh-oh-oh, yeah-eh', '2001-01-01', '2001-01-25');
 
 -- --------------------------------------------------------
 
@@ -67,6 +68,30 @@ INSERT INTO `residuo` (`TIPORESIDUO`, `DESCRIPCIONRESIDUO`) VALUES
 ('Inflamables', 'En condiciones de temperaturas adversas y expuestos a fuentes de calor causan rápidamente un incendio. Los cambios químicos, la fricción o la humedad son causas muy habituales que provocan que ardan con facilidad. No controlar la gestión de estos residuos sensibles a altas temperaturas representa un riesgo para los entornos vulnerables. Ejemplos de residuos inflamables: el fósforo, los aldehídos y los hidrocarburos.'),
 ('Reactivos', 'Por su inestabilidad pueden llegar a ser explosivos en distintas situaciones. Esto sucede debido a la acción de temperaturas y fuerzas variables. Si entran en contacto con el agua pueden liberar gases, vapores y humos tóxicos al medio ambiente. Residuos que contengan amonio, magnesio o cloruro de acetileno están entre los principales ejemplos de los residuos reactivos.'),
 ('Tóxicos', 'Pueden ser orgánicos e inorgánicos. Por el alto contenido de sustancias tóxicas que tienen provocan efectos nocivos en la salud humana y en el medio ambiente. La alta capacidad destructora que poseen los vuelve una amenaza, incluso, para espacios distantes al origen de la emisión. Suelen añadirse como ingredientes a varios productos populares como los combustibles, pinturas, baterías, equipos electrónicos.');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `transporte`
+--
+
+CREATE TABLE `transporte` (
+  `IDTRANSPORTE` int(11) NOT NULL,
+  `NOMBREUSUARIO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `NOMBRECONTROL` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DIRECCIONORIGEN` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DIRECCIONDESTINO` varchar(40) COLLATE utf8mb4_spanish_ci NOT NULL,
+  `DESCRIPCIONTRANSPORTE` varchar(400) COLLATE utf8mb4_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `transporte`
+--
+
+INSERT INTO `transporte` (`IDTRANSPORTE`, `NOMBREUSUARIO`, `NOMBRECONTROL`, `DIRECCIONORIGEN`, `DIRECCIONDESTINO`, `DESCRIPCIONTRANSPORTE`) VALUES
+(1, 'Anuel', 'KEII', 'PUERTO RICO', 'MIAMI', ''),
+(3, 'Anuel', 'KEII', 'Cra 45 #53-47', 'Cra 153 #19-04', 'nain'),
+(4, 'Ostin', 'SIGUES CON ÉL ', 'Cra 145 #53-47', 'Cra 53 #19-04', '');
 
 -- --------------------------------------------------------
 
@@ -132,6 +157,15 @@ ALTER TABLE `residuo`
   ADD UNIQUE KEY `RESIDUO_PK` (`TIPORESIDUO`);
 
 --
+-- Indices de la tabla `transporte`
+--
+ALTER TABLE `transporte`
+  ADD PRIMARY KEY (`IDTRANSPORTE`),
+  ADD UNIQUE KEY `TRANSPORTE_PK` (`IDTRANSPORTE`),
+  ADD KEY `CONTROL_TRANSPORTE_FK` (`NOMBRECONTROL`),
+  ADD KEY `USUARIO_TRANSPORTE_FK` (`NOMBREUSUARIO`);
+
+--
 -- Indices de la tabla `tratamiento`
 --
 ALTER TABLE `tratamiento`
@@ -146,6 +180,16 @@ ALTER TABLE `usuario`
   ADD UNIQUE KEY `USUARIO_PK` (`NOMBREUSUARIO`);
 
 --
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `transporte`
+--
+ALTER TABLE `transporte`
+  MODIFY `IDTRANSPORTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- Restricciones para tablas volcadas
 --
 
@@ -156,6 +200,13 @@ ALTER TABLE `control`
   ADD CONSTRAINT `FK_CONTROL_RESIDUO_C_RESIDUO` FOREIGN KEY (`TIPORESIDUO`) REFERENCES `residuo` (`TIPORESIDUO`),
   ADD CONSTRAINT `FK_CONTROL_TRATAMIEN_TRATAMIE` FOREIGN KEY (`NOMBRETRATAMIENTO`) REFERENCES `tratamiento` (`NOMBRETRATAMIENTO`),
   ADD CONSTRAINT `FK_CONTROL_USUARIO_C_USUARIO` FOREIGN KEY (`NOMBREUSUARIO`) REFERENCES `usuario` (`NOMBREUSUARIO`);
+
+--
+-- Filtros para la tabla `transporte`
+--
+ALTER TABLE `transporte`
+  ADD CONSTRAINT `FK_TRANSPOR_CONTROL_T_CONTROL` FOREIGN KEY (`NOMBRECONTROL`) REFERENCES `control` (`NOMBRECONTROL`),
+  ADD CONSTRAINT `FK_TRANSPOR_USUARIO_T_USUARIO` FOREIGN KEY (`NOMBREUSUARIO`) REFERENCES `usuario` (`NOMBREUSUARIO`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

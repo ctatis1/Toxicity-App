@@ -1,16 +1,17 @@
 <?php
-    session_start();
-    $var= $_SESSION['usuario'];
-    if ($var==null || $var=''){
+    session_start();  
+    $usu= $_SESSION['usuario'];   
+    if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM tratamiento";
+    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
     $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
     if(!$resultado){
         die("error");
+    }else{
+        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
-
 
 <!doctype html>
 <html lang="en">
@@ -24,7 +25,7 @@
     <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
     <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosProcedimiento.css">
+    <link rel="stylesheet" href="estilosPerfil.css">
    
     
 
@@ -54,8 +55,8 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block" action="validarbuscador.php" method="post">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar" id="buscador">
+              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar">
                   <button class="btn position-absolute btnBuscar" type="submit"><i class = "icon ion-md-search"></i></button>
                 </form>    
               <div class="collapse navbar-collapse" id="    navbarSupportedContent">
@@ -73,48 +74,52 @@
             </div>
             </nav>
             
-            <div id="content">
-                <section>
-                    <div class="container pt-2 pb-3">
+            <div id="contenido">
+                <section class="py-3">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-lg-9">
-                                <h1 class="font-weight-bold mb-0">Manejo de Residuos Peligrosos</h1>
+                            <div class="col-lg-12">
+                                <h1 class="font-weight-bold mb-0">Controles</h1>
+                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
+                            </div>                            
+                        </div>
+                    </div>                    
+                </section>
+                
+                <section>
+                    <div class="container">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
+                                   <div class="row">                                                              
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearPedidoTransporte.php">Realizar un pedido</a></button>
+                                    </div>                                                               
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verPedidoTransporte.php">Ver pedidos realizados</a></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <section>
-                            <?php
-                                while($row=mysqli_fetch_array($resultado)){
-                            ?>                                                         
-                    <div class="container pb-3">                                                       
+                    <div class="container pt-4">
                         <div class="card">
-                            <div class="card-body">                                                                                      
-                                   <div class="row">                                                              
-                                    <div class="col-lg-12">
-                                        <h3 class="font-weight-bold mb-0"><?php echo $row["NOMBRETRATAMIENTO"];?></h3>
-                                        <p class="lead text-muted" style="text-align: justify"><?php echo $row["DESCRIPCIONTRATAMIENTO"];?></p>
-                                    </div>                       
-                                </div>
+                            <div class="card-body">                         
+                                 <div class="row">                              
+                                      <div class="form-group col-lg-12">
+                                        <div class="col-lg-12">
+                                            <h4 class="font-weight-bold mb-0">Pedido Creado Exitosamente!</h4>
+                                        </div>
+                                      </div>                                                                      
+                                  </div>                                   
                             </div>
                         </div>
                     </div>
-                         <?php 
-                              }
-                         mysqli_free_result($resultado);?>
-                </section> 
-            </div>
+                </section>
                 
+            </div>
         </div>
     </div>
     
-   
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-  </body>
-</html>

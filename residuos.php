@@ -42,7 +42,7 @@
                <a href="residuos.php" class="text-light"><i class = "icon ion-md-leaf lead" ></i> Residuos</a>
                <a href="procedimiento.php" class="text-light"><i class = "icon ion-md-bookmarks lead" ></i> Procedimientos</a>
                <a href="controles.php" class="text-light"><i class = "icon ion-md-list lead" ></i>Controles</a>
-               <a href="#" class="text-light"><i class = "icon ion-md-stats lead" ></i> Estadísticas</a>
+               <a href="transportes.php" class="text-light"><i class = "icon ion-md-stats lead" ></i> Transporte</a>
                <a href="perfil.php" class="text-light"><i class = "icon ion-md-person lead" ></i> Perfil</a>
            </div>
         </div>

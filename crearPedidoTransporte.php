@@ -1,15 +1,14 @@
-   <?php
+<?php
     session_start();  
     $usu= $_SESSION['usuario'];   
     if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
-    if(!$resultado){
+    $datosC= "SELECT NOMBRECONTROL FROM control WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
+    $resultadoC=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosC);
+    
+    if(!$resultadoC){
         die("error");
-    }else{
-        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
 
@@ -24,8 +23,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href = "https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css"  rel = "stylesheet" >
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="estilosModificarDatosCuenta.css">
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="estilosPerfil.css">
    
     
 
@@ -78,13 +77,10 @@
                 <section class="py-3">
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-9">
-                                <h1 class="font-weight-bold mb-0">Modificar Datos</h1>
-                                <p class="text-muted lead">Podrá modificar los datos que desee</p>
-                            </div>      
-                            <div class="col-lg-3 d-flex">
-                                <!--<button class="btn btn-primary w-100 align-self-center text-light"><a href="perfil.php">Volver</a></button>-->
-                            </div>                         
+                            <div class="col-lg-12">
+                                <h1 class="font-weight-bold mb-0">Transportes</h1>
+                                <p class="text-muted lead">En esta sección podrá pedir o ver pedidos del servicio de transporte de residuos.</p>
+                            </div>                            
                         </div>
                     </div>                    
                 </section>
@@ -93,30 +89,65 @@
                     <div class="container">
                         <div class="card">
                             <div class="card-body">
-                                <form action="validarModificarDatosCuenta.php" method="post">   
+                                <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
+                                   <div class="row">                                                              
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearPedidoTransporte.php">Realizar un pedido</a></button>
+                                    </div>                                                               
+                                    <div class="col-lg-6">
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verPedidoTransporte.php">Ver pedidos realizados</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="container pt-4">
+                        <div class="card">
+                            <div class="card-body">
+                                <form action="validarCrearPedidoTrans.php" method="post">  
                                  <div class="row">                              
                                   <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Usuario</label>
-                                    <input type="text" class="form-control" id="Usuario" name="Usuario" value="<?php echo $row["NOMBREUSUARIO"];?>" readonly>
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Origen</label>
+                                    <input type="text" class="form-control" id="origen" name="origen" placeholder="Ingrese la ubicación en la que se recogerá el pedido">
                                     <p></p>
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Contraseña</label>
-                                    <input type="text" class="form-control" name="Contraseña" id="Contraseña" value="<?php echo $row["CONTRASENAUSUARIO"];?>">
-                                  </div>                                  
+                                  </div> 
                                   <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Fecha de Nacimiento</label>
-                                    <input type="date" class="form-control" value="2001-01-01" min="1930-01-01" id="Fecha" name="Fecha"   value="<?php echo $row["FECHANACIMIENTOUSUARIO"];?>">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Destino</label>
+                                    <input type="text" class="form-control" id="destino" name="destino" placeholder="Ingrese la ubicación en la que se entregará el pedido">
                                     <p></p>
-                                    <label for="exampleInputPassword1" class="font-weight-bold">Correo</label>
-                                    <input type="email" class="form-control" name="Correo" id="Correo" value="<?php echo $row["CORREO"];?>">
-                                  </div>   
-                                  </div>                               
+                                  </div> 
+                                </div>                                 
+                                  <div class="row">  
+                                  <div class="form-group col-lg-6">
+                                    <label for="control" class="font-weight-bold">Control al que se aplica el servicio</label>                                
+                                      <select name="control" class="form-control">
+                                          <?php
+                                            while($rowR=mysqli_fetch_array($resultadoC)){
+                                            ?>                            
+                                        <option selected value="<?php echo $rowR['NOMBRECONTROL'];?>"><?php echo $rowR['NOMBRECONTROL']?></option>
+                                          <?php
+                                            }
+                                            ?>                                
+                                      </select>
+                                    <p></p>
+                                  </div>                                      
+                                  </div>
+                                  <div class="row">                              
+                                  <div class="form-group col-lg-12">
+                                    <label for="exampleInputEmail1" class="font-weight-bold">Especificación</label>
+                                      <textarea type="text" rows="6" class="form-control w-20" id="especificacion" name="especificacion" placeholder="Si lo desea, ingrese una especificación para el pedido"></textarea>
+                                    <p></p>
+                                  </div>                        
+                                  </div> 
                                 <div class="container">
                                     <div class="row">
                                         <div class="col-lg-9">
                                 
                                         </div>                 
                                         <div class="col-lg-3 d-flex">
-                                            <button class="btn btn-primary w-100 align-self-center"><a class="text-light">Modificar Datos</a></button>
+                                            <button class="btn btn-primary w-100 align-self-center"><a class="text-light">Crear Pedido</a></button>
                                           </div>  
                                     </div>
                                     </div>                                      
@@ -125,6 +156,7 @@
                         </div>
                     </div>
                 </section>
+                
             </div>
         </div>
     </div>
