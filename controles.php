@@ -55,10 +55,10 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar">
+              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block" action="buscador.php" method="post">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar" id="buscador" name="buscador">
                   <button class="btn position-absolute btnBuscar" type="submit"><i class = "icon ion-md-search"></i></button>
-                </form>    
+                </form>      
               <div class="collapse navbar-collapse" id="    navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">                  
                   <li class="nav-item dropdown">

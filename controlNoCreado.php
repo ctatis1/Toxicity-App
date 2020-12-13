@@ -4,11 +4,12 @@
     if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosC= "SELECT NOMBRECONTROL FROM control WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultadoC=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosC);
-    
-    if(!$resultadoC){
+    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
+    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
+    if(!$resultado){
         die("error");
+    }else{
+        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
 
@@ -57,7 +58,7 @@
               <form class="form-inline my-2 my-lg-0 position-relative d-inline-block" action="buscador.php" method="post">
                   <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar" id="buscador" name="buscador">
                   <button class="btn position-absolute btnBuscar" type="submit"><i class = "icon ion-md-search"></i></button>
-                </form>       
+                </form>        
               <div class="collapse navbar-collapse" id="    navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">                  
                   <li class="nav-item dropdown">
@@ -78,8 +79,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="font-weight-bold mb-0">Transportes</h1>
-                                <p class="text-muted lead">En esta sección podrá pedir o ver pedidos del servicio de transporte de residuos.</p>
+                                <h1 class="font-weight-bold mb-0">Controles</h1>
+                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
                             </div>                            
                         </div>
                     </div>                    
@@ -92,10 +93,10 @@
                                 <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
                                    <div class="row">                                                              
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearPedidoTransporte.php">Realizar un pedido</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearControl.php">Crear un nuevo control</a></button>
                                     </div>                                                               
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verPedidoTransporte.php">Ver pedidos realizados</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verControles.php">Ver controles</a></button>
                                     </div>
                                 </div>
                             </div>
@@ -105,53 +106,15 @@
                 <section>
                     <div class="container pt-4">
                         <div class="card">
-                            <div class="card-body">
-                                <form action="validarCrearPedidoTrans.php" method="post">  
+                            <div class="card-body">                         
                                  <div class="row">                              
-                                  <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Origen</label>
-                                    <input type="text" class="form-control" id="origen" name="origen" placeholder="Ingrese la ubicación en la que se recogerá el pedido">
-                                    <p></p>
-                                  </div> 
-                                  <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Destino</label>
-                                    <input type="text" class="form-control" id="destino" name="destino" placeholder="Ingrese la ubicación en la que se entregará el pedido">
-                                    <p></p>
-                                  </div> 
-                                </div>                                 
-                                  <div class="row">  
-                                  <div class="form-group col-lg-6">
-                                    <label for="control" class="font-weight-bold">Control al que se aplica el servicio</label>                                
-                                      <select name="control" class="form-control">
-                                          <?php
-                                            while($rowR=mysqli_fetch_array($resultadoC)){
-                                            ?>                            
-                                        <option selected value="<?php echo $rowR['NOMBRECONTROL'];?>"><?php echo $rowR['NOMBRECONTROL']?></option>
-                                          <?php
-                                            }
-                                            ?>                                
-                                      </select>
-                                    <p></p>
-                                  </div>                                      
-                                  </div>
-                                  <div class="row">                              
-                                  <div class="form-group col-lg-12">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Especificación</label>
-                                      <textarea type="text" rows="6" class="form-control w-20" id="especificacion" name="especificacion" placeholder="Si lo desea, ingrese una especificación para el pedido"></textarea>
-                                    <p></p>
-                                  </div>                        
-                                  </div> 
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-9">
-                                
-                                        </div>                 
-                                        <div class="col-lg-3 d-flex">
-                                            <button class="btn btn-primary w-100 align-self-center"><a class="text-light">Crear Pedido</a></button>
-                                          </div>  
-                                    </div>
-                                    </div>                                      
-                                </form>
+                                      <div class="form-group col-lg-12">
+                                        <div class="col-lg-12">
+                                            <h4 class="font-weight-bold mb-0">Error al crear el control.</h4>
+                                            <p class="text-muted lead">Revise los valores ingresados y vuelva a intentarlo.</p>
+                                        </div>
+                                      </div>                                                                      
+                                  </div>                                   
                             </div>
                         </div>
                     </div>

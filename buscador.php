@@ -4,7 +4,7 @@
     if ($var==null || $var=''){
         header("location:noAutorizado.html");
     }
-    $datosU= "SELECT * FROM residuo";
+    $datosU= "SELECT * FROM residuo WHERE TIPORESIDUO LIKE '%".$_POST['buscador']."%'";
     $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
     if(!$resultado){
         die("error");
@@ -54,8 +54,8 @@
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"             aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
-              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block" action="validarbuscador.php" method="post">
-                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar" id="buscador">
+              <form class="form-inline my-2 my-lg-0 position-relative d-inline-block" action="buscador.php" method="post">
+                  <input class="form-control mr-sm-2" type="search" placeholder="Buscar Residuo" aria-label="Buscar" id="buscador" name="buscador">
                   <button class="btn position-absolute btnBuscar" type="submit"><i class = "icon ion-md-search"></i></button>
                 </form>    
               <div class="collapse navbar-collapse" id="    navbarSupportedContent">
@@ -84,9 +84,9 @@
                     </div>
                 </section>
                 <section>
-                            <?php
-                                while($row=mysqli_fetch_array($resultado)){
-                            ?>                                                         
+                   <?php
+                        while($row=mysqli_fetch_array($resultado)){
+                    ?>                                                         
                     <div class="container pb-3">                                                       
                         <div class="card">
                             <div class="card-body">                                                                                      
@@ -99,9 +99,9 @@
                             </div>
                         </div>
                     </div>
-                         <?php 
-                              }
-                         mysqli_free_result($resultado);?>
+                    <?php 
+                        }
+                    mysqli_free_result($resultado);?>
                 </section> 
             </div>
                 

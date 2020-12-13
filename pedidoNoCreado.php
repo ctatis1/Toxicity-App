@@ -4,11 +4,12 @@
     if ($usu==null || $usu=''){
         header("location:noAutorizado.html");
     }
-    $datosC= "SELECT NOMBRECONTROL FROM control WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
-    $resultadoC=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosC);
-    
-    if(!$resultadoC){
+    $datosU= "SELECT * FROM usuario WHERE NOMBREUSUARIO= '".$_SESSION['usuario']."'";
+    $resultado=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosU);
+    if(!$resultado){
         die("error");
+    }else{
+        $row=mysqli_fetch_assoc($resultado);  
     }
 ?>
 
@@ -78,8 +79,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="font-weight-bold mb-0">Transportes</h1>
-                                <p class="text-muted lead">En esta sección podrá pedir o ver pedidos del servicio de transporte de residuos.</p>
+                                <h1 class="font-weight-bold mb-0">Controles</h1>
+                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
                             </div>                            
                         </div>
                     </div>                    
@@ -105,53 +106,15 @@
                 <section>
                     <div class="container pt-4">
                         <div class="card">
-                            <div class="card-body">
-                                <form action="validarCrearPedidoTrans.php" method="post">  
+                            <div class="card-body">                         
                                  <div class="row">                              
-                                  <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Origen</label>
-                                    <input type="text" class="form-control" id="origen" name="origen" placeholder="Ingrese la ubicación en la que se recogerá el pedido">
-                                    <p></p>
-                                  </div> 
-                                  <div class="form-group col-lg-6">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Ubicación de Destino</label>
-                                    <input type="text" class="form-control" id="destino" name="destino" placeholder="Ingrese la ubicación en la que se entregará el pedido">
-                                    <p></p>
-                                  </div> 
-                                </div>                                 
-                                  <div class="row">  
-                                  <div class="form-group col-lg-6">
-                                    <label for="control" class="font-weight-bold">Control al que se aplica el servicio</label>                                
-                                      <select name="control" class="form-control">
-                                          <?php
-                                            while($rowR=mysqli_fetch_array($resultadoC)){
-                                            ?>                            
-                                        <option selected value="<?php echo $rowR['NOMBRECONTROL'];?>"><?php echo $rowR['NOMBRECONTROL']?></option>
-                                          <?php
-                                            }
-                                            ?>                                
-                                      </select>
-                                    <p></p>
-                                  </div>                                      
-                                  </div>
-                                  <div class="row">                              
-                                  <div class="form-group col-lg-12">
-                                    <label for="exampleInputEmail1" class="font-weight-bold">Especificación</label>
-                                      <textarea type="text" rows="6" class="form-control w-20" id="especificacion" name="especificacion" placeholder="Si lo desea, ingrese una especificación para el pedido"></textarea>
-                                    <p></p>
-                                  </div>                        
-                                  </div> 
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-lg-9">
-                                
-                                        </div>                 
-                                        <div class="col-lg-3 d-flex">
-                                            <button class="btn btn-primary w-100 align-self-center"><a class="text-light">Crear Pedido</a></button>
-                                          </div>  
-                                    </div>
-                                    </div>                                      
-                                </form>
+                                      <div class="form-group col-lg-12">
+                                        <div class="col-lg-12">
+                                            <h4 class="font-weight-bold mb-0">Error al crear el pedido.</h4>
+                                            <p class="text-muted lead">Revise los valores ingresados y vuelva a intentarlo.</p>
+                                        </div>
+                                      </div>                                                                      
+                                  </div>                                   
                             </div>
                         </div>
                     </div>
@@ -161,13 +124,3 @@
         </div>
     </div>
     
-   
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
-  </body>
-</html>

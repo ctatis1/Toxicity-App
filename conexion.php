@@ -7,3 +7,4 @@
     header("location:registroExistoso.html");
     
 ?>
+<!--validacion del registro-->
