@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-12-2020 a las 01:35:11
+-- Tiempo de generación: 14-12-2020 a las 05:02:22
 -- Versión del servidor: 10.4.14-MariaDB
 -- Versión de PHP: 7.2.34
 
@@ -42,10 +42,11 @@ CREATE TABLE `control` (
 --
 
 INSERT INTO `control` (`NOMBRECONTROL`, `NOMBREUSUARIO`, `TIPORESIDUO`, `NOMBRETRATAMIENTO`, `DESCRIPCIONCONTROL`, `FECHACONTROLINICIAL`, `FECHACONTROLFINAL`) VALUES
-('controla', 'Anuel', 'Explosivos', 'Disposición Final', 'asdasd', '2001-02-01', '2001-02-01'),
-('KEII', 'Anuel', 'Corrosivos', 'Disposición Final', 'Ella ya no piensa en él (En él)\r\nÉl la convirtió en alguien que ella no e\'\r\nNo le basta dar amor y ser fiel (Ser fiel)\r\nHoy se va modo Romeo, ella quiere beber\r\nY no (Y no), ya no confía en nadie y no (No)\r\nHoy se bebe y pa\' la calle y woo (Woo)\r\nEl DJ que le ponga el dembow (Dembow), uah-uah', '2020-12-17', '2020-12-17'),
-('PO ENCIMA', 'Ostin', 'Tóxicos', 'Transporte', '(`NOMBRECONTROL`, `NOMBREUSUARIO`, `TIPORESIDUO`, `NOMBRETRATAMIENTO`, `DESCRIPCIONCONTROL`, `FECHACONTROLINICIAL`, `FECHACONTROLFINAL`)', '2001-01-01', '2001-01-17'),
-('SIGUES CON ÉL ', 'Ostin', 'Explosivos', 'Almacenamiento temporal', '¿Por qué sigues con él?\r\nSi borracha me confesaste que él no te lo hace bien\r\nTú le calientas la comida, pero él no te sabe comer (okay)\r\nSi pruebas, no vas a volver (no), no-oh-oh-oh, yeah-eh', '2001-01-01', '2001-01-25');
+('controla', 'Anuel', 'Inflamables', '2. Almacenamiento temporal', 'asdasdasd', '2001-01-17', '2001-01-17'),
+('JERRY', 'TOM', 'Explosivos', '2. Almacenamiento temporal', 'ASDFGHJ', '2010-02-01', '2010-03-02'),
+('keii', 'Anuel', 'Tóxicos', '4. Disposición Final', 'sdf', '2001-01-01', '2001-01-01'),
+('mister Champions', 'Bicho', 'Tóxicos', '4. Disposición Final', 'sd', '2001-01-01', '2001-01-01'),
+('PO ENCIMA', 'Ostin', 'Tóxicos', '4. Disposición Final', 'asdasdasd', '2001-01-01', '2001-01-01');
 
 -- --------------------------------------------------------
 
@@ -89,9 +90,12 @@ CREATE TABLE `transporte` (
 --
 
 INSERT INTO `transporte` (`IDTRANSPORTE`, `NOMBREUSUARIO`, `NOMBRECONTROL`, `DIRECCIONORIGEN`, `DIRECCIONDESTINO`, `DESCRIPCIONTRANSPORTE`) VALUES
-(1, 'Anuel', 'KEII', 'PUERTO RICO', 'MIAMI', ''),
-(3, 'Anuel', 'KEII', 'Cra 45 #53-47', 'Cra 153 #19-04', 'nain'),
-(4, 'Ostin', 'SIGUES CON ÉL ', 'Cra 145 #53-47', 'Cra 53 #19-04', '');
+(7, 'Anuel', 'keii', 'Cra 45 #53-47', 'Cra 53 #19-04', ''),
+(8, 'Ostin', 'PO ENCIMA', 'Cra 45 #53-47', 'Cra 153 #19-04', 'qweqwsdgsdg'),
+(9, 'Ostin', 'PO ENCIMA', 'Cra 45 #53-47', 'Cra 53 #19-04', 'qwe'),
+(13, 'Bicho', 'mister Champions', 'Cra 45 #53-47', 'Cra 153 #19-04', 'sd'),
+(14, 'Bicho', 'mister Champions', 'Cra 45 #53-47', 'Cra 153 #19-04', 'sdfgh'),
+(15, 'TOM', 'JERRY', 'Cra 45 #53-47', 'Cra 53 #19-04', 'poiuh');
 
 -- --------------------------------------------------------
 
@@ -109,10 +113,10 @@ CREATE TABLE `tratamiento` (
 --
 
 INSERT INTO `tratamiento` (`NOMBRETRATAMIENTO`, `DESCRIPCIONTRATAMIENTO`) VALUES
-('Almacenamiento temporal', 'Una vez que los recipientes se llenen, deberán llevarse al Almacén Temporal de Residuos Peligrosos, lugar asignado para mantener los recipientes con los residuos peligrosos generados en las instalaciones, antes de ser enviados a disposición final.\r\n\r\nEl Almacén Temporal de Residuos Peligrosos debe estar separado de las áreas de producción y almacenamiento de materias primas. Debe contar con muros de contención, fosas de retención, pasillos amplios, dispositivos para extinción de incendios, señalamiento, ventilación e iluminación apropiada.'),
-('Disposición Final', 'La disposición final de residuos peligrosos se hace a través de empresas autorizadas, tanto para su transportación fuera de la planta así como para su reciclaje, incineración o cualquier otro método utilizado para su manejo final. La documentación que acredite a las empresas para el manejo de residuos deberá solicitarse antes de la contratación'),
-('Identificación', 'Todos los recipientes que contengan residuos peligrosos deben contar una etiqueta de identificación cuya información varía según la legislación de cada lugar, debe incluir el nombre del residuo y el tipo al que pertenece.'),
-('Transporte', 'Se debe contar con vehículos autorizados para el transporte de este tipo de residuos. El conductor debe estar capacitado y contar con todas las pólizas y seguros en caso de accidentes. Se debe llevar una bitácora sobre la inspección de material.');
+('1. Identificación', 'Todos los recipientes que contengan residuos peligrosos deben contar una etiqueta de identificación cuya información varía según la legislación de cada lugar, debe incluir el nombre del residuo y el tipo al que pertenece.'),
+('2. Almacenamiento temporal', 'Una vez que los recipientes se llenen, deberán llevarse al Almacén Temporal de Residuos Peligrosos, lugar asignado para mantener los recipientes con los residuos peligrosos generados en las instalaciones, antes de ser enviados a disposición final.\r\n\r\nEl Almacén Temporal de Residuos Peligrosos debe estar separado de las áreas de producción y almacenamiento de materias primas. Debe contar con muros de contención, fosas de retención, pasillos amplios, dispositivos para extinción de incendios, señalamiento, ventilación e iluminación apropiada.'),
+('3. Transporte', 'Se debe contar con vehículos autorizados para el transporte de este tipo de residuos. El conductor debe estar capacitado y contar con todas las pólizas y seguros en caso de accidentes. Se debe llevar una bitácora sobre la inspección de material.'),
+('4. Disposición Final', 'La disposición final de residuos peligrosos se hace a través de empresas autorizadas, tanto para su transportación fuera de la planta así como para su reciclaje, incineración o cualquier otro método utilizado para su manejo final. La documentación que acredite a las empresas para el manejo de residuos deberá solicitarse antes de la contratación');
 
 -- --------------------------------------------------------
 
@@ -132,8 +136,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`NOMBREUSUARIO`, `CONTRASENAUSUARIO`, `FECHANACIMIENTOUSUARIO`, `CORREO`) VALUES
-('Anuel', '1234', '2001-01-01', 'anuel@hotmail.com'),
-('Ostin', '12345', '2001-01-01', 'lamarrash@hotmail.com');
+('Anuel', '1234', '2000-10-19', 'anuel@hotmail.com'),
+('Bicho', '777', '2001-06-21', 'serresiete@hotmail.com'),
+('Ostin', '12345', '2001-01-01', 'lamarrash@hotmail.com'),
+('TOM', '1111', '1999-10-03', 'TOM@GMAIL.COM');
 
 --
 -- Índices para tablas volcadas
@@ -187,7 +193,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `transporte`
 --
 ALTER TABLE `transporte`
-  MODIFY `IDTRANSPORTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `IDTRANSPORTE` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Restricciones para tablas volcadas
