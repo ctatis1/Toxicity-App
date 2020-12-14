@@ -49,15 +49,5 @@ a:hover{
     padding-bottom: 15px;
     font-weight: 150;
 }
-.btn {
-    border: 0;
-}
-.btn-primary {
-    background-color:#1a2537; 
-}
-.btn-primary a {
-    color: white;
-}
-.btn-primary:hover {
-    background-color:#1a2537; 
-}
+
+

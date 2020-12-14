@@ -7,7 +7,7 @@
     $datosR= "SELECT TIPORESIDUO FROM residuo";
     $resultadoR=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosR);
     
-    $datosT= "SELECT NOMBRETRATAMIENTO FROM tratamiento";
+    $datosT= "SELECT NOMBRETRATAMIENTO FROM tratamiento WHERE NOMBRETRATAMIENTO <> '1. Identificación'";
     $resultadoT=mysqli_query( mysqli_connect("localhost","root","","bdproyecto"),$datosT);
     
     if(!$resultadoR && !$resultadoT){
@@ -134,13 +134,13 @@
                                   <div class="form-group col-lg-6">
                                     <label for="tratamiento" class="font-weight-bold">Tratamiento</label>
                                     <select name="tratamiento" class="form-control">
-                                        <?php
+                                        <?php                                            
                                             while($rowT=mysqli_fetch_array($resultadoT)){
-                                            ?>                            
-                                        <option selected value="<?php echo $rowT['NOMBRETRATAMIENTO'];?>"><?php echo $rowT['NOMBRETRATAMIENTO']?></option>
-                                          <?php
+                                        ?>                            
+                                            <option selected value="<?php echo $rowT['NOMBRETRATAMIENTO'];?>"><?php echo $rowT['NOMBRETRATAMIENTO']?></option>
+                                        <?php
                                             }
-                                            ?>  
+                                        ?>  
                                       </select>
                                     <p></p>
                                     </div>   

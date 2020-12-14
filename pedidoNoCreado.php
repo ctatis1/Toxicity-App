@@ -79,8 +79,8 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-12">
-                                <h1 class="font-weight-bold mb-0">Controles</h1>
-                                <p class="text-muted lead">En esta sección podrá crear o ver controles. Estos son informes de avance sobre el tratamiento de residuos.</p>
+                                <h1 class="font-weight-bold mb-0">Transportes</h1>
+                                <p class="text-muted lead">En esta sección podrá pedir o ver pedidos del servicio de transporte de residuos.</p>
                             </div>                            
                         </div>
                     </div>                    

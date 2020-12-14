@@ -93,10 +93,10 @@
                                 <h3 class="text-muted lead pb-2">¿Qué desea hacer?</h3>                                                         
                                    <div class="row">                                                              
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="crearPedidoTransporte.php">Realizar un pedido</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a href="crearPedidoTransporte.php">Realizar un pedido</a></button>
                                     </div>                                                               
                                     <div class="col-lg-6">
-                                        <button class="btn btn-primary w-100 align-self-center"><a class="text-light" href="verPedidoTransporte.php">Ver pedidos realizados</a></button>
+                                        <button class="btn btn-primary w-100 align-self-center"><a href="verPedidoTransporte.php">Ver pedidos realizados</a></button>
                                     </div>
                                 </div>
                             </div>

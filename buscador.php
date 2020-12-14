@@ -83,8 +83,8 @@
                         </div>
                     </div>
                 </section>
-                <section>
-                   <?php
+                <section>                   
+                    <?php
                         while($row=mysqli_fetch_array($resultado)){
                     ?>                                                         
                     <div class="container pb-3">                                                       
